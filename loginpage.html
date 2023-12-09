@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #007BFF;
+            width: 405px; /* Increased width by 5px */
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .account-type {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .account-type img {
+            width: 90px;
+            height: 90px;
+            cursor: pointer;
+        }
+
+        .account-type img {
+            margin-right: 10px;
+        }
+
+        .account-type img.selected {
+            border: 2px solid #007BFF;
+        }
+
+        .form-group {
+            margin-top: 20px;
+            text-align: left;
+            position: relative; /* Added position relative */
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group .email-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .form-group .lock-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Password toggle styles */
+        .password-toggle {
+            position: absolute;
+            top: 45%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .login-button, .signup-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 0px;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .signup-login {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .signup-login a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        /* Password strength label styles */
+        .password-strength-label {
+            font-size: 12px;
+            color: red; /* Default color for invalid */
+        }
+         .image-container {
+            text-align: center;
+        }
+
+    .verify-button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 10px; /* Add margin to the right to create space */
+    text-transform: uppercase;
+    margin-right: 80px;
+}
+
+/* Style for Cancel button */
+.cancel-button {
+    background-color: #ccc; /* Choose a suitable color for the Cancel button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.signup-login .verify-button,
+.signup-login .cancel-button {
+    margin-top: 10px; /* Add margin at the top to create space */
+}
+
+/* Style for space div (optional) */
+.space-div {
+    margin-top: 10px; /* You can adjust this margin as needed */
+}
+    </style>
+</head>
+<body>
+    <div class="form-container" id="loginFormContainer">
+        <!-- Login Form -->
+        <h2 style="color: #007BFF;">Choose Account Type</h2>
+        <div class="account-type">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.dsSIYo_rTDVJa4DJLaXw7wHaFN&pid=Api&P=0&h=180" alt="Doctor" id="doctor">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.FplhDLYSREStg3kvR6gJjgAAAA&pid=Api&P=0&h=180" alt="Patient" id="patient">
+        </div>
+        <p>Hello <span id="user-type">Doctor/Patient</span>,</p>
+        <p>Please fill out the form below to get started.</p>
+        <form id="loginForm" onsubmit="return validateLoginForm()">
+            <div class="form-group">
+                <label for="emailPhone"><span class="email-icon">&#128231;</span>Email/Phone</label>
+                <input type="text" id="emailPhone" required placeholder="Enter email or phone no">
+            </div>
+            <div class="form-group">
+                <label for="password"><span class="lock-icon">&#128274;</span>Password</label>
+                <input type="password" id="password" required placeholder="Enter your password">
+                <span class="password-toggle" id="toggle-password" onclick="togglePasswordVisibility('password')">&#x1f441;</span>
+                <div id="password-strength" class="password-strength">
+                    <span class="password-strength-label">Password must be at least 8 characters long with at least 1 special character</span>
+                </div>
+            </div>
+            <div class="signup-login">
+                <button type="submit" class="login-button">Login</button>
+            </div>
+        </form>
+        <div class="signup-login">
+            <p>Don't have an account? <a href="#" id="showSignupLink">Signup</a> | <a href="imp.html">Forgot?</a></p>
+        </div>
+    </div>
+
+    <div class="form-container" id="signupFormContainer" style="display: none;">
+        <!-- Signup Form -->
+        <h2 style="color: #007BFF;">Choose Account Type</h2>
+        <div class="account-type">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.dsSIYo_rTDVJa4DJLaXw7wHaFN&pid=Api&P=0&h=180" alt="Doctor" id="doctorSignup">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.FplhDLYSREStg3kvR6gJjgAAAA&pid=Api&P=0&h=180" alt="Patient" id="patientSignup">
+        </div>
+        <p>Hello <span id="user-typeSignup">Doctor/Patient</span>,</p>
+        <p>Please fill out the form below to get started.</p>
+        <form id="signupForm" method="post" action="log.php">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required placeholder="Enter your full name" name="fullName">
+            </div>
+            <div class="form-group">
+                <label for="emailPhoneSignup"><span class="email-icon">&#128231;</span>Email/Phone</label>
+                <input type="text" id="emailPhoneSignup" required placeholder="Enter email or phone no" name="emailPhoneSignup">
+            </div>
+            <div class="form-group">
+                <label for="passwordSignup"><span class="lock-icon">&#128274;</span>Create Password</label>
+                <input type="password" id="passwordSignup" required placeholder="Create your password">
+                <span class="password-toggle" id="toggle-passwordSignup" onclick="togglePasswordVisibility('passwordSignup')">&#x1f441;</span>
+                <div id="password-strengthSignup" class="password-strength">
+                    <span class="password-strength-label">Password must be at least 8 characters long with at least 1 special character</span>
+                </div>
+            </div>
+            <div class="signup-login">
+                <button type="submit" class="signup-button">Sign Up</button>
+            </div>
+        </form>
+        <div class="signup-login">
+            <p>Already have an account? <a href="#" id="showLoginLink">Login</a></p>
+        </div>
+    </div>
+
+
+    <div class="form-container" id="otpVerificationContainer" style="display: none;">
+        <!-- OTP Verification Form -->
+        <h2 style="color: #007BFF;">Verification</h2>
+        <div class="image-container">
+            <img src="images/verify.jpeg" alt="Verification Image" width="70" height="80">
+        </div>
+        <p>Please enter the OTP sent to your email or phone number to verify your account.</p>
+        <form id="otpVerificationForm">
+            <div class="form-group">
+                <label for="otp"><span class="lock-icon">&#128274;</span>OTP</label>
+                <input type="text" id="otp" required placeholder="Enter OTP">
+            </div>
+            <div class="signup-login">
+                <button type="button" class="verify-button" id="verifyOTPButton">Verify OTP</button>
+                <button type="button" class="cancel-button" id="cancelOTPButton">Cancel</button>
+            </div>
+            <div class="signup-login">
+                <button type="button" class="resend-button" id="resendOTPButton">Resend OTP</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        const signupFormContainer = document.getElementById('signupFormContainer');
+        const showSignupLink = document.getElementById('showSignupLink');
+        const showLoginLink = document.getElementById('showLoginLink');
+        const userType = document.getElementById('user-type');
+
+        showSignupLink.addEventListener('click', () => {
+            loginFormContainer.style.display = 'none';
+            signupFormContainer.style.display = 'block';
+            userType.textContent = 'Doctor/Patient';
+        });
+
+        showLoginLink.addEventListener('click', () => {
+            loginFormContainer.style.display = 'block';
+            signupFormContainer.style.display = 'none';
+            userType.textContent = 'Doctor/Patient';
+        });
+
+        // Add form submission logic for login
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Handle login form submission, e.g., send data to the server
+        });
+
+        // Add form submission logic for signup
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Handle signup form submission, e.g., send data to the server
+        });
+
+        const doctorImage = document.getElementById('doctor');
+        const patientImage = document.getElementById('patient');
+
+        doctorImage.addEventListener('click', () => {
+            doctorImage.classList.add('selected');
+            patientImage.classList.remove('selected');
+            userType.textContent = 'Doctor';
+        });
+
+        patientImage.addEventListener('click', () => {
+            patientImage.classList.add('selected');
+            doctorImage.classList.remove('selected');
+            userType.textContent = 'Patient';
+        });
+
+        // Add image selection logic for the signup page
+        const doctorImageSignup = document.getElementById('doctorSignup');
+        const patientImageSignup = document.getElementById('patientSignup');
+        const userTypeSignup = document.getElementById('user-typeSignup');
+
+        doctorImageSignup.addEventListener('click', () => {
+            doctorImageSignup.classList.add('selected');
+            patientImageSignup.classList.remove('selected');
+            userTypeSignup.textContent = 'Doctor';
+        });
+
+        patientImageSignup.addEventListener('click', () => {
+            patientImageSignup.classList.add('selected');
+            doctorImageSignup.classList.remove('selected');
+            userTypeSignup.textContent = 'Patient';
+        });
+
+        // Function to toggle password visibility
+        function togglePasswordVisibility(passwordFieldId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const toggleIcon = document.getElementById('toggle-' + passwordFieldId);
+            const type = passwordField.getAttribute('type');
+            
+            if (type === 'password') {
+                passwordField.setAttribute('type', 'text');
+                toggleIcon.innerHTML = '&#x1f441;'; // Show the eye symbol
+            } else {
+                passwordField.setAttribute('type', 'password');
+                toggleIcon.innerHTML = '&#x1f440;'; // Show the crossed eye symbol
+            }
+        }
+
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('password-strength');
+        const passwordStrengthLabel = document.querySelector('#password-strength .password-strength-label');
+
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const isValid = isPasswordValid(password);
+            
+            if (isValid) {
+                passwordStrengthLabel.textContent = 'Password is strong';
+                passwordStrengthLabel.style.color = 'green';
+            } else {
+                passwordStrengthLabel.textContent = 'Password must be at least 8 characters long with at least 1 special character';
+                passwordStrengthLabel.style.color = 'red';
+            }
+        });
+
+        function isPasswordValid(password) {
+            // Check if password is at least 8 characters long and contains at least 1 special character
+            const minLength = 8;
+            const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+            return password.length >= minLength && specialCharRegex.test(password);
+        }
+
+        //signup
+
+        const passwordInputSignup = document.getElementById('passwordSignup');
+        const passwordStrengthSignup = document.getElementById('password-strengthSignup');
+        const passwordStrengthLabelSignup = document.querySelector('#password-strengthSignup .password-strength-label');
+
+        passwordInputSignup.addEventListener('input', () => {
+            const passwordSignup = passwordInputSignup.value;
+            const isValidSignup = isPasswordValid(passwordSignup);
+            
+            if (isValidSignup) {
+                passwordStrengthLabelSignup.textContent = 'Password is strong';
+                passwordStrengthLabelSignup.style.color = 'green';
+            } else {
+                passwordStrengthLabelSignup.textContent = 'Password must be at least 8 characters long with at least 1 special character';
+                passwordStrengthLabelSignup.style.color = 'red';
+            }
+        });
+
+        // validation of data
+
+        function validateLoginForm() {
+            const emailPhone = document.getElementById('emailPhone').value;
+            const password = document.getElementById('password').value;
+            //const userType = document.querySelector('input[name="userType"]:checked');
+
+            if (userType.textContent!="Patient" && userType.textContent!="Doctor") {
+                alert('Please select an account type.');
+                return false;
+            }
+
+            if (!isEmailOrPhoneValid(emailPhone)) {
+                 alert('Invalid email or phone number. Please enter a valid email or a 10-digit phone number.');
+                return false;
+            }
+
+            if (!isPasswordValid(password)) {
+                alert('Invalid password. Password must be at least 8 characters long with at least 1 special character.');
+                return false;
+            }
+
+            // You can also add additional validation here if needed
+
+            // If all checks pass, the form will submit
+            return true;
+        }
+
+        function validateSignupForm() {
+            const fullName = document.getElementById('fullName').value;
+            const emailPhoneSignup = document.getElementById('emailPhoneSignup').value;
+            const passwordSignup = document.getElementById('passwordSignup').value;
+
+            //const userTypeSignup = document.querySelector('input[name="userType"]:checked');
+            
+            if (!isFullNameValid(fullName)) {
+                alert('Invalid full name. Please enter a valid name.');
+                return false;
+            }
+            
+            if (!isEmailOrPhoneValid(emailPhoneSignup)) {
+                alert('Invalid email or phone number. Please enter a valid email or a 10-digit phone number.');
+                return false;
+            }
+            
+            if (!isPasswordValid(passwordSignup)) {
+                alert('Invalid password. Password must be at least 8 characters long with at least 1 special character.');
+                return false;
+            }
+
+            if (userTypeSignup.textContent!="Patient" && userTypeSignup.textContent!="Doctor") {
+                alert('Please select an account type.');
+                return false;
+            }
+
+            
+
+            // If all checks pass, the form will submit
+            return true;
+        }
+
+        function isEmailOrPhoneValid(emailPhone) {
+            // Check if it's a valid email or a 10-digit phone number
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            const phoneRegex = /^\d{10}$/;
+            
+            if (emailRegex.test(emailPhone) || phoneRegex.test(emailPhone)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function isFullNameValid(fullName) {
+            const nameRegex = /^[a-zA-Z ]+$/;
+            
+            if (nameRegex.test(fullName)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // OTP for creating an account
+function showOTPVerificationContainer() {
+    signupFormContainer.style.display = 'none';
+    otpVerificationContainer.style.display = 'block';
+}
+
+// Function to go back to the signup form
+function goBackToSignup() {
+    otpVerificationContainer.style.display = 'none';
+    signupFormContainer.style.display = 'block';
+}
+
+// Add a click event listener to the "Cancel" button in the OTP verification container
+document.getElementById('cancelOTPButton').addEventListener('click', () => {
+    goBackToSignup(); // Go back to the signup form when the "Cancel" button is clicked
+});
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box-container {
+            padding: 40px;
+            text-align: center;
+            display: inline-block;
+            border: 3px solid blue;
+        }
+
+        input {
+            font-size: 18px;
+            padding: 15px;
+            margin: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 20px;
+            margin: 10px;
+            width: 40%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button.cancel {
+            background-color: #e74c3c;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>Your Page Title</title>
+</head>
+<body>
+    <div class="box-container">
+        <form method="post" action="doctorpin.php">
+            <input type="hidden" name="emailPhoneSignup" value="<?php echo $_SESSION['emailPhoneSignup']; ?>"/>
+            <input type="text" name="pin" placeholder="Enter PIN" required>
+            <div class="button-container">
+                <button type="submit" id="add-entry" class="menu-button">Get Data</button>
+            </div>
+        </form>
+        <div class="button-container">
+            <button class="cancel" onclick="cancel()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function cancel() {
+            window.location.href = 'doctormain.html';
+        }
+    </script>
+</body>
+</html>

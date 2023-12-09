@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #007BFF;
+            width: 405px; /* Increased width by 5px */
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .account-type {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .account-type img {
+            width: 90px;
+            height: 90px;
+            cursor: pointer;
+        }
+        .account-type img{
+            margin-right: 10px;
+        }
+
+        .account-type img.selected {
+            border: 2px solid #007BFF;
+        }
+
+        .form-group {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group .email-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .form-group .lock-icon {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+
+        .login-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .signup-login {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .forgot {
+            float: right; /* This will push "Forgot?" to the right side */
+        }
+
+        .forgot a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .signup-login a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+            font-size: 20px; /* Adjust the size as needed */
+            vertical-align: middle; /* Adjust the vertical alignment */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="color: #007BFF;">Choose Account Type</h2>
+        <div class="account-type">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.dsSIYo_rTDVJa4DJLaXw7wHaFN&pid=Api&P=0&h=180" alt="Doctor" id="doctor">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.FplhDLYSREStg3kvR6gJjgAAAA&pid=Api&P=0&h=180" alt="Patient" id="patient">
+        </div>
+        <p>Hello <span id="user-type">Doctor/Patient</span>,</p>
+        <p>Please fill out the form below to get started.</p>
+        <form id="signupForm" method="post" action="log.php">
+            <div class="form-group">
+                <label for="emailPhoneSignup"><span class="email-icon">&#128231;</span>Email/Phone</label>
+                <input type="text" id="emailPhoneSignup" name="emailPhoneSignup"required placeholder="Enter email or phone no">
+            </div>
+            <div class="form-group">
+                <label for="passwordSignup"><span class="lock-icon">&#128274;</span>Password</label>
+                <div style="display: flex;">
+                <input type="password" id="passwordSignup" name="passwordSignup"required placeholder="Enter your password">
+                <span id="togglePassword" style="cursor: pointer; margin-top: 8px;">👁️</span>
+                <input type="hidden" name="tableInput" value ="" id="tableInput" />
+                </div>
+            </div>
+            <div class="signup-login">
+                <button type="submit" class="login-button">Login</button>
+            </div>
+        </form>
+        <div class="signup-login">
+            <p>No account? <a href="signup.html">Signup</a> <a class="forgot" href="Forgot.html">Forgot?</a></p>
+        </div>
+
+    </div>
+
+    <script>
+        const doctorImage = document.getElementById('doctor');
+        const patientImage = document.getElementById('patient');
+        const userType = document.getElementById('user-type');
+
+        doctorImage.addEventListener('click', () => {
+            doctorImage.classList.add('selected');
+            patientImage.classList.remove('selected');
+            userType.textContent = 'Doctor';
+            tableInput.value = userType.textContent;
+        });
+
+        patientImage.addEventListener('click', () => {
+            patientImage.classList.add('selected');
+            doctorImage.classList.remove('selected');
+            userType.textContent = 'Patient';
+            tableInput.value = userType.textContent;
+        });
+/*
+        // Add form submission logic here
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Handle form submission, e.g., send data to the server
+        }); */
+
+        const passwordInput = document.getElementById('passwordSignup');
+        const togglePassword = document.getElementById('togglePassword');
+
+        togglePassword.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = '👁️';
+            }
+        });
+
+    </script>
+</body>
+</html>
+
+

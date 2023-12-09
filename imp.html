@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password & OTP Verification</title>
+    <style>
+        /* Common CSS styles for both pages */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            color: #007BFF;
+            width: 405px;
+            max-height: 600px;
+            overflow: hidden;
+            margin: 0 auto; /* Center the container horizontally */
+            margin-top: 50px; /* Adjust the top margin as needed */
+            position: relative; /* Add relative positioning */
+        }
+
+        /* Style for the close (X) button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #007BFF;
+        }
+
+        /* Style for the label */
+        .container label {
+            color: #007BFF;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Style for the input field */
+        .container input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Style for the submit button */
+        .container button[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        /* Center the button text */
+        .container button[type="submit"] {
+            text-align: center;
+        }
+
+        /* Add margin to the button for spacing */
+        .container button[type="submit"] {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Forgot Password Page -->
+    <div class="container" id="forgotPage">
+        <!-- Close (X) button to navigate back to Login Page -->
+        <span class="close-button" id="closeButton" onclick="navigateToLoginPage('forgotPage')">X</span>
+        <form id="forgotForm">
+            <div class="form-group">
+                <label for="emailPhone">Enter your email or phone to get back to account:</label>
+                <input type="text" id="emailPhone" required placeholder="Enter email or phone number">
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- OTP Verification Page -->
+    <div class="container" id="otpVerificationPage" style="display: none;">
+        <!-- Close (X) button to navigate back to Login Page -->
+        <span class="close-button" id="closeButton" onclick="navigateToLoginPage('otpVerificationPage')">X</span>
+        <p>OTP sent to your registered mail or phone</p>
+        <form id="otpVerificationForm">
+            <div class="form-group">
+                <label for="otp">Enter the OTP:</label>
+                <input type="text" id="otp" required placeholder="Enter OTP">
+            </div>
+            <div class="form-group">
+                <button type="submit">Verify OTP</button>
+            </div>
+        </form>
+        <p>Didn't receive the OTP? <a href="#" id="resendOTP">Resend OTP</a></p>
+    </div>
+
+    <script>
+        // JavaScript function to navigate to the Login Page
+        function navigateToLoginPage(pageId) {
+            document.getElementById(pageId).style.display = "none";
+            window.location.href = "loginpage.html"; // Replace with the actual login page URL
+        }
+
+        // JavaScript function to switch between Forgot Password and OTP Verification pages
+        function switchToPage(pageToShow, pageToHide) {
+            document.getElementById(pageToHide).style.display = "none";
+            document.getElementById(pageToShow).style.display = "block";
+        }
+
+        // Add an event listener to the "forgotForm" form for submission
+        const forgotForm = document.getElementById('forgotForm');
+        forgotForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            switchToPage('otpVerificationPage', 'forgotPage'); // Show OTP Verification Page
+        });
+
+        // JavaScript function to handle OTP verification (add your logic here)
+        document.getElementById('otpVerificationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Add your OTP verification logic here
+            // If OTP is valid, allow password reset or show a success message
+        });
+    </script>
+</body>
+</html>

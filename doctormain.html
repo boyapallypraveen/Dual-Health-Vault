@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles2.css">
+</head>
+<body>
+    
+   <div class="container">
+        <div class="menu">
+            <div id="menu-icon" class="menu-icon">&#9662;</div>
+            <div id="menu-links" class="menu-links">
+                <a href="#">Profile</a>
+                <a href="doctordata.html" id="">Add New Entry</a>
+                <form method="post" action="docview.php">
+                    <input type="hidden" name="emailPhoneSignup" value="<?php echo $_SESSION['emailPhoneSignup']; ?>"/>
+                    <button type="submit" id="add-entry" class="menu-button">Show My Entries</button>
+                </form>
+                <a href="#">Settings</a>
+                <form method="post" action="logout.php">
+                    <button type="submit" id="logout-button">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class="welcome">
+            <marquee behavior="scroll" direction="left">Welcome User!! Have a healthy day...</marquee>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="styles2.css" />
+  </head>
+  <body>
+    <div class="login_form_container">
+      <div class="login_form">
+        <div class="box">
+      <img src="\hello\images\verify.jpeg" alt="Profile Image" />
+      <h2>Profile</h2>
+    </div>
+    <div class="box">
+    <form method="post" action="doctordata.html">
+        <input type="hidden" name="emailPhoneSignup" value="<?php echo $_SESSION['emailPhoneSignup']; ?>"/>
+            <button type="submit" id="add-entry" class="menu-button">
+      <img src="\hello\images\post.png" alt="Profile Image" />
+      <h2>ADD NEW ENTRY</h2>
+    </form>
+    </div>
+    <div class="box">
+    <form method="post" action="docview.php">
+        <input type="hidden" name="emailPhoneSignup" value="<?php echo $_SESSION['emailPhoneSignup']; ?>"/>
+            <button type="submit" id="add-entry" class="menu-button">
+                <img src="\hello\images\view.jpeg" alt="Profile Image" />
+            <h2>Show My Entries</h2>
+        </form>
+    </div>
+    <div class="box">
+        <img src="\hello\images\set.jpeg" alt="Profile Image" />
+      <h2>Settings</h2>
+    </div>
+    <div class="box">
+        <form method="post" action="docpin.html">
+        <input type="hidden" name="emailPhoneSignup" value="<?php echo $_SESSION['emailPhoneSignup']; ?>"/>
+        <button type="submit" id="add-entry" class="menu-button">
+        <img src="\hello\images\info.jpeg" alt="Profile Image" />
+      <h2>Additional Info</h2>
+  </form>
+    </div>
+    <div class="box">
+      <img src="\hello\images\context.jpeg" alt="Profile Image" />
+      <h2>Context</h2>
+    </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="login.js"></script>
+  </body>
+
+<style>
+
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
+    background-color: #fff;
+    margin: 0; /* Add this to reset the margin */
+    padding: 0; /* Add this to reset the padding */
+}
+
+.login_form_container {
+    width: 900px;
+    height: 700px;
+    max-width: 1000px;
+    max-height: 550px;
+    background: #fff;//#040717
+    border-radius: 50px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 35px; /* Adjust the margin-top to create spacing below the welcome scroll */
+    position: absolute; /* Use absolute positioning to place it relative to the body */
+    top: 100px; /* Adjust the top value to position it below the welcome scroll */
+}
+
+.login_form_container::before{
+    
+    position: absolute;
+    width: 170%;
+    height: 170%;
+    content: '';
+    background-image: conic-gradient(transparent, transparent, transparent, #ee00ff);
+    animation: rotate_border 6s linear infinite;
+
+}
+.login_form_container::after{
+    
+    position: absolute;
+    width: 170%;
+    height: 170%;
+    content: '';
+    background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
+    animation: rotate_border 6s linear infinite;
+    animation-delay: -3s;
+}
+@keyframes rotate_border{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.login_form{
+    position: absolute;
+    content: '';
+    background-color: #0c1022;
+    border-radius: 50px 5px;
+    inset: 5px;
+    padding: 50px 40px;
+    z-index: 10;
+    color: #00ccff;
+
+} 
+h2{
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.fa{
+    font-size: 20px;
+
+}
+
+.fotter {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.fotter a{
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+.glowIcon {
+    text-shadow: 0 0 10px #00ccff;
+
+}
+
+
+.box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 50%; /* Optional: Apply rounded corners to the image */
+}
+
+
+/* Add this CSS to your existing styles */
+
+.login_form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.box {
+  width: calc(33.33% - 20px); /* Adjust the width and spacing */
+  height: 200px;
+  background-color: #00ccff; /* Change the background color as needed */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 20px; /* Add margin to create space between top and bottom boxes */
+  transition: background-color 0.3s ease; /* Add a smooth color transition on hover */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.box h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+}
+
+/* Add hover effect for the boxes */
+.box:hover {
+  background-color: #007BFF; /* Change the hover background color as needed */
+}
+
+/* Animation for the boxes */
+.box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, #00ccff, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.box:hover::before {
+  transform: scaleX(1);
+}
+
+/* Add animation for text inside the boxes */
+.box h2 {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.box:hover h2 {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu-button h2 {
+    position: relative;
+    z-index: 1;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-button:hover h2 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+</style>
+<script>
+
+  $(".input_text").focus(function(){
+    $(this).prev('.fa').addclass('glowIcon')
+})
+$(".input_text").focusout(function(){
+    $(this).prev('.fa').removeclass('glowIcon')
+})
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.menu {
+    position: fixed; /* Make the menu bar fixed at the top */
+    top: 0; /* Stick it to the top of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    width: 100%; /* Use the full width of the screen */
+    background-color: #007BFF;
+    padding: 10px;
+    z-index: 1; /* Set z-index to ensure the menu bar appears on top */
+}
+
+.menu-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    color: #fff;
+    cursor: pointer;
+}
+
+.menu-links {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    width: 100%; /* Use the full width of the screen */
+}
+
+.menu-links a, .menu-button {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px; /* Increase font size */
+    margin: 0 20px; /* Add spacing between menu items */
+}
+
+#logout-button, .menu-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px; /* Font size for menu buttons */
+}
+
+/* Styling for the "Welcome" message */
+.welcome {
+    text-align: center;
+    background-color: #F5A623;
+    color: #000;
+    padding: 20px;
+    font-size: 24px;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    /* overflow: hidden;  Hide the overflowing text */
+}
+
+.welcome-text {
+    animation: scrollText 30s linear infinite; /* Define the animation for text */
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%); /* Start position: off-screen to the right */
+    }
+    100% {
+        transform: translateX(-200%); /* End position: off-screen to the left */
+    }
+}
+
+
+#logout-button {
+    
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;  
+    font-size: 14px;
+}
+/*
+#openModalButton {
+    color: #fff; /* Set text color to white 
+    cursor: pointer;
+}
+*/
+#add-entry {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #fff; 
+    font-size: 14px;
+}
+
+
+
+
+
+/* Add the rest of your CSS styles as needed */
+
+
+
+
+/* Additional styles for the modal */
+/* Additional styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Adjust the width of the modal content */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 650px; /* Set a fixed max-width for the modal content */
+    width: 90%; /* Optional: You can adjust this value as needed */
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Ensure the close button is visible */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#fileList {
+    text-align: left; /* Ensure left alignment */
+}
+
+#fileList div {
+    margin-left: 10px; /* Add some spacing between the bullet and the text */
+}
+
+/* Adjust the width of the text fields for doctor name and hospital name */
+.name-fields input {
+    width: 80%; /* Make the text fields take the full width available within the modal content */
+    max-width: 80%; /* Ensure they don't exceed the content width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+
+.header {
+    text-align: center;
+    margin: 20px 0; /* Add some margin for spacing */
+}
+
+.datetime {
+    font-size: 18px;
+    font-weight: bold;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+
+
+.modal-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10px; /* Space below the "ADD NEW ENTRY" text */
+}
+
+.left-column {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Additional styles for the prescription text area */
+.right-column {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* ... Previous styles ... */
+
+/* Additional styles for the modal header */
+.header {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0; /* Add some margin for spacing */
+}
+
+/* Additional styles for the name fields */
+.name-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0; /* Add some margin for spacing */
+}
+
+.name-fields label {
+    font-weight: bold;
+}
+
+/*.name-fields input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 5px;
+}*/
+
+/* Move the Submit button to the right side */
+#submit{
+    display: block;
+    margin-top: 20px;
+    margin-left: auto; /* Move to the right side */
+    background-color: #007BFF;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for the file removal buttons */
+.remove-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+
+/* Hover effect for the Submit button */
+#submitButton:hover {
+    background-color: #0056b3;
+}
+
+
+textarea{
+  resize: none;
+}
+
+
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+label {
+  display: block;
+  font:
+    1rem 'Fira Sans',
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+.data-entries {
+    /* Additional styling for your data entries */
+    margin-top: 30px; /* Add space above the data entries */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#success-animation {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: fadeOut 3s ease forwards;
+}
+
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
